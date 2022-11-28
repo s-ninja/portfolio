@@ -6,12 +6,12 @@ def is_available_date(booked_dates, date_for_booking):
 
     def usp(s):
         dat = []
-        pattern = '%d.%m.%Y'
+        pattern = '%d.%m.%Y' # Форма которой будет приниматься дата
         for i in s:
-            if '-' not in i:
+            if '-' not in i: # Если дата конкретная
                 j = datetime.strptime(i, pattern)
                 dat.append(j.strftime('%d.%m.%Y'))
-            else:
+            else: # Если период дат
                 a, b = i.split('-')
                 a = datetime.strptime(a, '%d.%m.%Y')
                 b = datetime.strptime(b, pattern)
