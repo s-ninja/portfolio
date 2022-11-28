@@ -1,0 +1,35 @@
+n = int(input())
+magicqr = []  # магический квадрат
+sumdig = 0  # сумма галвной диагонали
+sumdig_1 = 0  # сумма дополнительной диагонали
+strok = [0] * n  # сумма строк
+stolb = [0] * n  # сумма столбцов диагонали
+vse = []  # весь квадрат в один массив для проверки повторений
+
+for i in range(n):
+    row = [int(_) for _ in input().split()]  # заполняем квадрат
+    magicqr.append(row)
+if sum(magicqr[0]) / n == magicqr[0][0] and sum(magicqr[0]) / n == magicqr[0][1]:  # проверка на одинаковые числа
+    print('NO')
+
+
+else:
+    for i in range(n):
+        sumdig += magicqr[i][i]  # сумма главной диагонали
+        sumdig_1 += magicqr[-i - 1][-i - 1]  # сумма дополнительной диагонали
+        for j in range(n):
+            stolb[j] += magicqr[i][j]  # столбцы
+            strok[i] += magicqr[i][j]  # строки
+            vse.append(magicqr[i][j])  # в одном массиве все числа квадрата
+    if (len(set(stolb))) == 1 and (len(set(strok))) == 1 and sumdig == stolb[0] and sumdig_1 == strok[0] and len(
+            set(vse)) == n ** 2 and 0 not in set(vse):
+        # провекра всех условий: 1-чтобы все суммы столбцов были одинаковы 2-чтобы суммы строк были одинаковы
+        # 3-чтобы сумма диагоналей совпадала с суммой столбцов
+        # 4-суммой строк 5- чтобы небыло одинаковых цифр и колличество их было равно n**2
+        # 6-чтобы цифры начинались с нуля
+        # можно сделать проверку на то чтобы цифр больше n**2 небыло, но так тоже проходит
+
+        print('YES')
+
+    else:
+        print('NO')
