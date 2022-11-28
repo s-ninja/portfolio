@@ -1,7 +1,7 @@
 def get_biggest(numbers):
     if numbers:
 
-        numbers = sorted(numbers, key= lambda x: str(x)*len(str(max(numbers))), reverse=True)
+        numbers = sorted(numbers, key= lambda x: str(x)*len(str(max(numbers))), reverse=True) # Сортировка в обратном порядке, каждое число на 1 разряд больше максимального
 
         numbers = list(map(str, numbers))
         return int(''.join(numbers))
