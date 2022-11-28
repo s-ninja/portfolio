@@ -1,0 +1,10 @@
+def get_biggest(numbers):
+    if numbers:
+
+        numbers = sorted(numbers, key= lambda x: str(x)*len(str(max(numbers))), reverse=True)
+
+        numbers = list(map(str, numbers))
+        return int(''.join(numbers))
+    else:
+        return -1
+print(get_biggest([61, 228, 9, 3, 11]))
