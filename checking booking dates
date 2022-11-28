@@ -1,0 +1,47 @@
+from datetime import datetime, date, time
+
+
+def is_available_date(booked_dates, date_for_booking):
+    some_date_1 = [date_for_booking]
+
+    def usp(s):
+        dat = []
+        pattern = '%d.%m.%Y'
+        for i in s:
+            if '-' not in i:
+                j = datetime.strptime(i, pattern)
+                dat.append(j.strftime('%d.%m.%Y'))
+            else:
+                a, b = i.split('-')
+                a = datetime.strptime(a, '%d.%m.%Y')
+                b = datetime.strptime(b, pattern)
+                c = b - a
+                dat.append(a.strftime('%d.%m.%Y'))
+                for i in range(c.days):
+                    day = 1
+                    a = date.toordinal(a)
+                    a += day
+                    a = datetime.fromordinal(a)
+                    dat.append(a.strftime('%d.%m.%Y'))
+        return dat
+
+    data_1 = usp(booked_dates)
+    data_2 = usp(some_date_1)
+    flag = True
+    if len(data_2) > 1:
+        for i in data_2:
+            if i in str(data_1).strip('[]'):
+                flag = False
+        return flag
+    else:
+        return str(data_2).strip('[]') not in str(data_1).strip('[]')
+
+
+with open('bron.txt', encoding='utf-8') as f:
+    dates = []
+    da = f.readlines()
+    for i in da:
+        dates.append(i.strip())
+
+some_date = '23.05.2021'
+print(is_available_date(dates, some_date))
