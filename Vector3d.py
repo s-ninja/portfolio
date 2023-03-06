@@ -23,7 +23,7 @@ class Vector1d:
         return Vector1d(self.x / other)
 
     def __str__(self):
-        return f'Координата {self.x=}\nКоордината {self.y=}'
+        return f'Координата {self.x=}\n'
 
 
 class Vector2d(Vector1d):
@@ -52,7 +52,7 @@ class Vector2d(Vector1d):
         return Vector2d(self.x / other, self.y / other)
 
     def __str__(self):
-        return f'Координата {self.x=}\nКоордината {self.y=}'
+        return f'{super().__str__()}Координата {self.y=}\n'
 
 
 class Vector3d(Vector2d):
@@ -81,7 +81,7 @@ class Vector3d(Vector2d):
         return Vector3d(self.x / other, self.y / other, self.z / other)
 
     def __str__(self):
-        return f'Координата {self.x=}\nКоордината {self.y=}\nКоордината {self.z=}'
+        return f'{super().__str__()}Координата {self.z=}'
 
 
 a = Vector3d(6, 6, 6)
